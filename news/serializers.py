@@ -1,13 +1,14 @@
 from rest_framework import serializers
-from .models import Blog, BlogSocialMediaLink, SocialMediaIcon
+
+from blog.models import SocialMediaIcon
+from .models import News, NewsSocialMediaLink
 from django.conf import settings
-from news.serializers import IconSerializer
 
 
-class AllBlogSerializer(serializers.ModelSerializer):
+class NewsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Blog
-        fields = ['id', 'content', 'title']
+        model = News
+        fields = ['id', 'title']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -19,10 +20,25 @@ class AllBlogSerializer(serializers.ModelSerializer):
         return data
 
 
-class BlogLinkSerializer(serializers.ModelSerializer):
+class IconSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SocialMediaIcon
+        fields = ['name', 'image']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        request = self.context.get('request')
+        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
+        lang_options = settings.MODELTRANSLATION_LANGUAGES
+        if lang in lang_options:
+            data['name'] = getattr(instance, f'name_{lang}')
+        return data
+
+
+class LinkSerializer(serializers.ModelSerializer):
     icon = IconSerializer()
     class Meta:
-        model = BlogSocialMediaLink
+        model = NewsSocialMediaLink
         fields = ['id', 'icon', 'link']
 
     def to_representation(self, instance):
@@ -35,11 +51,11 @@ class BlogLinkSerializer(serializers.ModelSerializer):
         return data
 
 
-class BlogDetailSerializer(serializers.ModelSerializer):
+class GetNewsSerializer(serializers.ModelSerializer):
     links = serializers.SerializerMethodField()
     class Meta:
-        model = Blog
-        fields = ['id', 'title', 'content', 'created_at', 'links', 'view_count']
+        model = News
+        fields = ['id', 'title', 'description', 'image', 'view_count', 'links', 'created_at']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -48,10 +64,10 @@ class BlogDetailSerializer(serializers.ModelSerializer):
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
             data['title'] = getattr(instance, f'title_{lang}')
-            data['content'] = getattr(instance, f'content_{lang}')
+            data['description'] = getattr(instance, f'description_{lang}')
         return data
 
     def get_links(self, obj):
         request = self.context.get('request')
-        links = BlogSocialMediaLink.objects.filter(blog=obj)
-        return BlogLinkSerializer(links, many=True, context={'request': request}).data
+        links = NewsSocialMediaLink.objects.filter(news=obj)
+        return LinkSerializer(links, many=True, context={'request': request}).data

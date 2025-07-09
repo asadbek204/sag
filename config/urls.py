@@ -23,10 +23,11 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
 
-admin.site.site_header = 'SAG WEB SYSTEM'
-admin.site.site_title = 'SAG WEB SYSTEM'
-admin.site.index_title = 'Welcome to dashboard'
+admin.site.site_header = _('SAG WEB SYSTEM')
+admin.site.site_title = _('SAG WEB SYSTEM')
+admin.site.index_title = _('Welcome to dashboard')
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -50,6 +51,9 @@ urlpatterns = i18n_patterns(
     path('api/v1/home/', include('home.urls')),
     path('api/v1/footer/', include('footer.urls')),
     path('api/v1/discount/', include('discount.urls')),
+    path('api/v1/contact/', include('contact.urls')),
+    path('api/v1/news/', include('news.urls')),
+    path('api/v1/rooms/', include('rooms.urls')),
     re_path(r'static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r"^swagger(?P<format>\.json|\.yaml)$", schema_view.without_ui(cache_timeout=0), name="schema-json"),

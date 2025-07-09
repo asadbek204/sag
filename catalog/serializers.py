@@ -8,7 +8,7 @@ from .models import (
     Carpet,
     Price,
     CarpetModel,
-    Size, CarpetModelImages,
+    Size, CarpetModelImages, CharacterDetail,
 )
 from django.conf import settings
 
@@ -211,6 +211,7 @@ class GetCarpetModelsSerializer(serializers.ModelSerializer):
 
 class ShapeForCarpetModelSerializer(serializers.ModelSerializer):
     size = serializers.SerializerMethodField()
+    shape = serializers.SerializerMethodField()
 
     class Meta:
         model = Size
@@ -223,12 +224,20 @@ class ShapeForCarpetModelSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         if instance.discount == 0:
             data.pop('discount', None)
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['shape'] = getattr(instance.shape, f'name_{lang}')
         return data
+
+    def get_language(self):
+        request = self.context.get('request')
+        lang = settings.MODELTRANSLATION_DEFAULT_LANGUAGE
+        if request:
+            return request.headers.get('Accept-Language', lang)
+        return lang
+
+    def get_shape(self, obj):
+        lang = self.get_language()
+        if hasattr(obj.shape, f'name_{lang}'):
+            return getattr(obj.shape, f'name_{lang}', obj.shape.name)
+        return obj.shape.name
 
 
 class CarpetModelImageSerializer(serializers.ModelSerializer):
@@ -243,13 +252,45 @@ class CarpetModelImageForSerializer(serializers.SerializerMethodField):
         fields = ['id', 'image']
 
 
+class CharacterDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CharacterDetail
+        fields = ['id', 'title', 'detail']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        request = self.context.get('request')
+        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
+        lang_options = settings.MODELTRANSLATION_LANGUAGES
+        if lang in lang_options:
+            data['title'] = getattr(instance, f'detail_{lang}')
+            data['detail'] = getattr(instance, f'detail_{lang}')
+        return data
+
+
 class CarpetModelForSerializer(serializers.ModelSerializer):
     shapes = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
+    character = serializers.SerializerMethodField()
+    character_details = serializers.SerializerMethodField()
+    color = serializers.SerializerMethodField()
 
     class Meta:
         model = CarpetModel
-        fields = ['id', 'name', 'color', 'image', 'shapes', 'images']
+        fields = ['id', 'name', 'color', 'image', 'shapes', 'images', 'character', 'character_details']
+
+    def get_language(self):
+        request = self.context.get('request')
+        lang = settings.MODELTRANSLATION_DEFAULT_LANGUAGE
+        if request:
+            return request.headers.get('Accept-Language', lang)
+        return lang
+
+    def get_color(self, obj):
+        lang = self.get_language()
+        if hasattr(obj.color, f'name_{lang}'):
+            return getattr(obj.color, f'name_{lang}', obj.color.name)
+        return obj.color.name
 
     def get_shapes(self, obj):
         sizes = Size.objects.filter(carpet_model=obj).select_related('shape')
@@ -267,6 +308,22 @@ class CarpetModelForSerializer(serializers.ModelSerializer):
         images = CarpetModelImages.objects.filter(carpet_model=obj)
         return CarpetModelImageSerializer(images, many=True, context={'request': request}).data
 
+    def get_character(self, obj):
+        request = self.context.get('request')
+        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
+        lang_options = settings.MODELTRANSLATION_LANGUAGES
+
+        character_detail = CharacterDetail.objects.filter(model=obj).first()
+        if character_detail:
+            if lang in lang_options:
+                return getattr(character_detail, f'title_{lang}', character_detail.title)
+            return character_detail.title
+        return None
+
+    def get_character_details(self, obj):
+        details = CharacterDetail.objects.filter(model=obj)
+        return CharacterDetailSerializer(details, many=True, context={'request': self.context.get('request')}).data
+
     def to_representation(self, instance):
         data = super().to_representation(instance)
         request = self.context.get('request')
@@ -274,7 +331,6 @@ class CarpetModelForSerializer(serializers.ModelSerializer):
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
             data['name'] = getattr(instance, f'name_{lang}')
-            data['color'] = getattr(instance.color, f'name_{lang}')
         return data
 
 

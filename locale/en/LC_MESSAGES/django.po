@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 18:25+0500\n"
+"POT-Creation-Date: 2025-07-09 14:34+0500\n"
 "PO-Revision-Date: 2025-07-02 19:04+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,15 +24,17 @@ msgid "about"
 msgstr ""
 
 #: .\about\models.py:7 .\about\models.py:21 .\about\models.py:46
-#: .\about\models.py:57 .\catalog\models.py:74 .\catalog\models.py:94
-#: .\catalog\models.py:107 .\footer\models.py:19 .\home\models.py:8
-#: .\home\models.py:29 .\method\models.py:9 .\method\models.py:22
-#: .\method\models.py:34 .\method\models.py:42
+#: .\about\models.py:57 .\blog\models.py:8 .\catalog\models.py:64
+#: .\catalog\models.py:84 .\catalog\models.py:122 .\footer\models.py:19
+#: .\home\models.py:8 .\home\models.py:29 .\method\models.py:9
+#: .\method\models.py:22 .\method\models.py:34 .\method\models.py:42
+#: .\news\models.py:10 .\rooms\models.py:8 .\rooms\models.py:21
 msgid "image"
 msgstr ""
 
 #: .\about\models.py:8 .\about\models.py:19 .\about\models.py:44
-#: .\blog\models.py:7 .\method\models.py:7 .\method\models.py:20
+#: .\blog\models.py:19 .\method\models.py:7 .\method\models.py:20
+#: .\news\models.py:8
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:14
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:53
 #: .\venv\Lib\site-packages\modeltranslation\tests\models.py:61
@@ -59,7 +61,7 @@ msgid "About Company"
 msgstr ""
 
 #: .\about\models.py:20 .\about\models.py:45 .\method\models.py:8
-#: .\method\models.py:21
+#: .\method\models.py:21 .\news\models.py:9
 msgid "description"
 msgstr ""
 
@@ -87,131 +89,156 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: .\blog\apps.py:8
+#: .\blog\apps.py:8 .\blog\models.py:32 .\news\models.py:22
 msgid "blog"
 msgstr "Blog"
 
-#: .\blog\models.py:8
+#: .\blog\models.py:7 .\catalog\models.py:16 .\catalog\models.py:28
+#: .\catalog\models.py:39 .\catalog\models.py:62 .\catalog\models.py:79
+#: .\catalog\models.py:96 .\catalog\models.py:133 .\footer\models.py:18
+#: .\rooms\models.py:7 .\rooms\models.py:20
+msgid "name"
+msgstr ""
+
+#: .\blog\models.py:14 .\blog\models.py:15
+msgid "Social Media Icon"
+msgstr ""
+
+#: .\blog\models.py:20
 msgid "content"
 msgstr "video"
 
-#: .\blog\models.py:9
+#: .\blog\models.py:21 .\news\models.py:11
 msgid "view_count"
 msgstr ""
 
-#: .\blog\models.py:10
-msgid "telegram_link"
+#: .\blog\models.py:27 .\blog\models.py:28
+msgid "Blog"
 msgstr ""
 
-#: .\blog\models.py:16 .\blog\models.py:17
-msgid "Blog"
+#: .\blog\models.py:33 .\method\models.py:23 .\news\models.py:23
+msgid "icon"
+msgstr ""
+
+#: .\blog\models.py:34 .\news\models.py:24
+msgid "link"
+msgstr ""
+
+#: .\blog\models.py:40 .\blog\models.py:41
+msgid "Blog Social Media Link"
 msgstr ""
 
 #: .\blog\views.py:35
 msgid "Content not found"
 msgstr ""
 
-#: .\catalog\apps.py:8 .\catalog\models.py:26 .\catalog\models.py:73
-#: .\catalog\models.py:92
+#: .\catalog\apps.py:8 .\catalog\models.py:27 .\catalog\models.py:63
+#: .\catalog\models.py:82
 msgid "catalog"
 msgstr ""
 
-#: .\catalog\models.py:15 .\catalog\models.py:27 .\catalog\models.py:38
-#: .\catalog\models.py:49 .\catalog\models.py:72 .\catalog\models.py:89
-#: .\catalog\models.py:118 .\footer\models.py:18
-msgid "name"
-msgstr ""
-
-#: .\catalog\models.py:21 .\catalog\models.py:22 .\catalog\views.py:93
+#: .\catalog\models.py:22 .\catalog\models.py:23 .\catalog\views.py:93
 #: .\catalog\views.py:170
 msgid "Catalog"
 msgstr ""
 
-#: .\catalog\models.py:33 .\catalog\models.py:34
+#: .\catalog\models.py:34 .\catalog\models.py:35
 msgid "Style"
 msgstr ""
 
-#: .\catalog\models.py:44 .\catalog\models.py:45
-msgid "Room"
-msgstr ""
-
-#: .\catalog\models.py:55 .\catalog\models.py:56
+#: .\catalog\models.py:45 .\catalog\models.py:46
 msgid "Color"
 msgstr ""
 
-#: .\catalog\models.py:60
+#: .\catalog\models.py:50
 msgid "from_price"
 msgstr ""
 
-#: .\catalog\models.py:61
+#: .\catalog\models.py:51
 msgid "to_price"
 msgstr ""
 
-#: .\catalog\models.py:67 .\catalog\models.py:68
+#: .\catalog\models.py:57 .\catalog\models.py:58
 msgid "Price"
 msgstr ""
 
-#: .\catalog\models.py:75 .\catalog\models.py:95
+#: .\catalog\models.py:65 .\catalog\models.py:85
 msgid "collection_type"
 msgstr ""
 
-#: .\catalog\models.py:81 .\catalog\models.py:82
+#: .\catalog\models.py:71 .\catalog\models.py:72
 msgid "Carpet"
 msgstr ""
 
-#: .\catalog\models.py:86
+#: .\catalog\models.py:76 .\catalog\models.py:109
 msgid "model"
 msgstr ""
 
-#: .\catalog\models.py:87
+#: .\catalog\models.py:77
 msgid "style"
 msgstr ""
 
-#: .\catalog\models.py:88
+#: .\catalog\models.py:78 .\rooms\apps.py:8 .\rooms\models.py:19
 msgid "room"
 msgstr ""
 
-#: .\catalog\models.py:90 .\catalog\models.py:133
+#: .\catalog\models.py:80 .\catalog\models.py:148
 msgid "price"
 msgstr ""
 
-#: .\catalog\models.py:91 .\catalog\models.py:134 .\discount\apps.py:8
+#: .\catalog\models.py:81 .\catalog\models.py:149 .\discount\apps.py:8
 msgid "discount"
 msgstr ""
 
-#: .\catalog\models.py:93
+#: .\catalog\models.py:83
 msgid "color"
 msgstr ""
 
-#: .\catalog\models.py:101 .\catalog\models.py:102
+#: .\catalog\models.py:91 .\catalog\models.py:92
 msgid "Carpet Model"
 msgstr ""
 
-#: .\catalog\models.py:106 .\catalog\models.py:129 .\home\serializers.py:127
+#: .\catalog\models.py:102 .\catalog\models.py:103
+msgid "Character"
+msgstr ""
+
+#: .\catalog\models.py:108
+msgid "character"
+msgstr ""
+
+#: .\catalog\models.py:110
+msgid "detail"
+msgstr ""
+
+#: .\catalog\models.py:116 .\catalog\models.py:117
+msgid "Character Detail"
+msgstr ""
+
+#: .\catalog\models.py:121 .\catalog\models.py:144 .\home\serializers.py:127
 msgid "carpet_model"
 msgstr ""
 
-#: .\catalog\models.py:113 .\catalog\models.py:114
+#: .\catalog\models.py:128 .\catalog\models.py:129
 msgid "Carpet Model Images"
 msgstr ""
 
-#: .\catalog\models.py:124 .\catalog\models.py:125
+#: .\catalog\models.py:139 .\catalog\models.py:140
 msgid "Shape"
 msgstr ""
 
-#: .\catalog\models.py:130
+#: .\catalog\models.py:145
 msgid "shape"
 msgstr ""
 
-#: .\catalog\models.py:131
+#: .\catalog\models.py:146
 msgid "width"
 msgstr ""
 
-#: .\catalog\models.py:132
+#: .\catalog\models.py:147
 msgid "length"
 msgstr ""
 
-#: .\catalog\models.py:140 .\catalog\models.py:141
+#: .\catalog\models.py:155 .\catalog\models.py:156
 msgid "Size"
 msgstr ""
 
@@ -248,16 +275,48 @@ msgstr ""
 msgid "Carpet Model not found"
 msgstr ""
 
-#: .\config\settings.py:131
+#: .\config\settings.py:135
 msgid "Uzbek"
 msgstr ""
 
-#: .\config\settings.py:132
+#: .\config\settings.py:136
 msgid "Russian"
 msgstr ""
 
-#: .\config\settings.py:133
+#: .\config\settings.py:137
 msgid "English"
+msgstr ""
+
+#: .\config\urls.py:28 .\config\urls.py:29
+msgid "SAG WEB SYSTEM"
+msgstr ""
+
+#: .\config\urls.py:30
+msgid "Welcome to dashboard"
+msgstr ""
+
+#: .\contact\apps.py:8 .\contact\models.py:35 .\contact\models.py:36
+msgid "Contact"
+msgstr ""
+
+#: .\contact\models.py:25
+msgid "full name"
+msgstr ""
+
+#: .\contact\models.py:26
+msgid "phone number"
+msgstr ""
+
+#: .\contact\models.py:27
+msgid "city"
+msgstr ""
+
+#: .\contact\models.py:28
+msgid "address"
+msgstr ""
+
+#: .\contact\models.py:29
+msgid "comment"
 msgstr ""
 
 #: .\core\base.py:6
@@ -332,10 +391,6 @@ msgstr ""
 msgid "About Method"
 msgstr ""
 
-#: .\method\models.py:23
-msgid "icon"
-msgstr ""
-
 #: .\method\models.py:29 .\method\models.py:30
 msgid "Content"
 msgstr ""
@@ -346,6 +401,30 @@ msgstr ""
 
 #: .\method\models.py:45 .\method\models.py:46
 msgid "Product Gallery"
+msgstr ""
+
+#: .\news\apps.py:8 .\news\models.py:17 .\news\models.py:18
+msgid "News"
+msgstr ""
+
+#: .\news\models.py:30 .\news\models.py:31
+msgid "News Social Media Link"
+msgstr ""
+
+#: .\news\views.py:35
+msgid "News not found"
+msgstr ""
+
+#: .\rooms\models.py:14 .\rooms\models.py:15
+msgid "Room"
+msgstr ""
+
+#: .\rooms\models.py:27 .\rooms\models.py:28
+msgid "Room Image"
+msgstr ""
+
+#: .\rooms\views.py:35
+msgid "Room not found"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
@@ -411,8 +490,8 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:297
 msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or"
-" hyphens."
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:309
@@ -631,8 +710,8 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1570
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD "
-"HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1575
@@ -811,8 +890,7 @@ msgid "Many-to-many relationship"
 msgstr ""
 
 #. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the
-#. label
+#. characters will prevent the default label_suffix to be appended to the label
 #: .\venv\Lib\site-packages\django\forms\boundfield.py:185
 msgid ":?.!"
 msgstr ""
@@ -862,8 +940,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:644
 #, python-format
-msgid ""
-"Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
@@ -970,8 +1047,7 @@ msgid "The inline value did not match the parent instance."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\models.py:1450
-msgid ""
-"Select a valid choice. That choice is not one of the available choices."
+msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\models.py:1594
@@ -1431,10 +1507,10 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:45
 msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or"
-" including the “Referrer-Policy: no-referrer” header, please remove them. "
-"The CSRF protection requires the “Referer” header to do strict referer "
-"checking. If you’re concerned about privacy, use alternatives like <a "
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
 "rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
 
@@ -1545,10 +1621,10 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:208
 #, python-format
 msgid ""
-"You are seeing this page because <a "
-"href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
-"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file "
-"and you have not configured any URLs."
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:217

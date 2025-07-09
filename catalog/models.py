@@ -1,5 +1,6 @@
 from django.db import models
 from core.base import BaseModel
+from rooms.models import Room
 from django.utils.translation import gettext_lazy as _
 
 
@@ -32,17 +33,6 @@ class Style(BaseModel):
     class Meta:
         verbose_name = _('Style')
         verbose_name_plural = _('Style')
-
-
-class Room(BaseModel):
-    name = models.CharField(max_length=250, blank=True, null=True, verbose_name = _('name'))
-
-    def __str__(self):
-        return f'{self.name}'
-
-    class Meta:
-        verbose_name = _('Room')
-        verbose_name_plural = _('Room')
 
 
 class Color(BaseModel):
@@ -102,6 +92,31 @@ class CarpetModel(BaseModel):
         verbose_name_plural = _('Carpet Model')
 
 
+class Character(BaseModel):
+    name = models.CharField(max_length=300, verbose_name = _('name'))
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = _('Character')
+        verbose_name_plural = _('Character')
+
+
+class CharacterDetail(BaseModel):
+    title = models.CharField(max_length=250, blank=True)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, blank=True, verbose_name = _('character'))
+    model = models.ForeignKey(CarpetModel, on_delete=models.CASCADE, blank=True, verbose_name = _('model'))
+    detail = models.CharField(max_length=250, verbose_name = _('detail'))
+
+    def __str__(self):
+        return f'{self.detail}'
+
+    class Meta:
+        verbose_name = _('Character Detail')
+        verbose_name_plural = _('Character Detail')
+
+
 class CarpetModelImages(BaseModel):
     carpet_model = models.ForeignKey(CarpetModel, on_delete=models.CASCADE, verbose_name = _('carpet_model'))
     image = models.ImageField(upload_to='carpet_model_images/', blank=True, null=True, verbose_name = _('image'))
@@ -139,4 +154,7 @@ class Size(BaseModel):
     class Meta:
         verbose_name = _('Size')
         verbose_name_plural = _('Size')
+
+
+
 

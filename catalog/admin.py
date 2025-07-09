@@ -6,10 +6,11 @@ from .models import (
     Price,
     Color,
     Size,
-    Room,
     Style,
     Catalog,
     CarpetModelImages,
+    Character,
+    CharacterDetail,
 )
 
 admin.site.register(Shape)
@@ -18,7 +19,8 @@ admin.site.register(Carpet)
 admin.site.register(Price)
 admin.site.register(Color)
 admin.site.register(Size)
-admin.site.register(Room)
 admin.site.register(Style)
 admin.site.register(Catalog)
 admin.site.register(CarpetModelImages)
+admin.site.register(Character)
+admin.site.register(CharacterDetail)

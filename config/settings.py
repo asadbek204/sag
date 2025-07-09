@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'footer',
     'method',
     'discount',
+    'rooms',
+    'news',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -189,3 +192,7 @@ SWAGGER_SETTINGS = {
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+BOT_ID = os.getenv('BOT_ID')
+CHAT_ID = os.getenv('CHAT_ID')
+TELEGRAM_API_URL = os.getenv('TELEGRAM_API_URL')
