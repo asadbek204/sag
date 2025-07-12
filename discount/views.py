@@ -20,7 +20,7 @@ class DiscountViewSet(ViewSet):
         tags=['discount']
     )
     def get_main_discounted_carpets(self, request, *args, **kwargs):
-        carpets = Carpet.objects.filter(collection_type=3)
+        carpets = Carpet.objects.filter(carpetmodel__collection_type=3).distinct()
         serializer = DiscountedCarpetSerializer(carpets, many=True, context={'request': request})
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
