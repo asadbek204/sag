@@ -203,7 +203,6 @@ class GetCarpetModelsSerializer(serializers.ModelSerializer):
         lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
             data['model'] = getattr(instance.model, f'name_{lang}')
             data['color'] = getattr(instance.color, f'name_{lang}')
         return data
@@ -323,15 +322,6 @@ class CarpetModelForSerializer(serializers.ModelSerializer):
     def get_character_details(self, obj):
         details = CharacterDetail.objects.filter(model=obj)
         return CharacterDetailSerializer(details, many=True, context={'request': self.context.get('request')}).data
-
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
-        return data
 
 
 class DiscountedCarpetSerializer(serializers.ModelSerializer):
