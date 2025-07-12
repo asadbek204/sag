@@ -342,11 +342,6 @@ class DiscountedCarpetSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['collection_type'] = instance.get_collection_type_display()
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
         return data
 
 
