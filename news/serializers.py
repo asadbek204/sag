@@ -8,7 +8,7 @@ from django.conf import settings
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ['id', 'title']
+        fields = ['id', 'title', 'image']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
