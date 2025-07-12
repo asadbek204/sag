@@ -32,7 +32,7 @@ class CatalogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Catalog
-        fields = ['id', 'name', 'styles']
+        fields = ['id', 'name', 'styles', 'image']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

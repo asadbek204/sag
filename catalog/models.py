@@ -14,6 +14,7 @@ COLLECTION_TYPE = (
 
 class Catalog(BaseModel):
     name = models.CharField(max_length=250, blank=True, null=True, verbose_name = _('name'))
+    image = models.ImageField(upload_to='catalog_img/', blank=True, verbose_name = _('image'))
 
     def __str__(self):
         return f'{self.name}'
