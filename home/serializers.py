@@ -116,11 +116,6 @@ class CarpetModelSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         if instance.discount > 0:
             data['price'] = instance.discount
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
         return data
 
     def get_model(self, obj):
