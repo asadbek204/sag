@@ -16,7 +16,8 @@ class SocialMediaIcon(BaseModel):
 
 
 class Blog(BaseModel):
-    title = models.CharField(max_length=30, blank=True, null=True, verbose_name = _('title'))
+    title = models.CharField(max_length=250, blank=True, null=True, verbose_name = _('title'))
+    description = models.TextField(verbose_name=_('description'))
     content = models.FileField(upload_to='blog/', verbose_name = _('content'))
     view_count = models.IntegerField(default=0, verbose_name = _('view_count'))
 

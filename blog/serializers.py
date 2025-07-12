@@ -39,7 +39,7 @@ class BlogDetailSerializer(serializers.ModelSerializer):
     links = serializers.SerializerMethodField()
     class Meta:
         model = Blog
-        fields = ['id', 'title', 'content', 'created_at', 'links', 'view_count']
+        fields = ['id', 'title', 'content', 'description', 'created_at', 'links', 'view_count']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -48,7 +48,7 @@ class BlogDetailSerializer(serializers.ModelSerializer):
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
             data['title'] = getattr(instance, f'title_{lang}')
-            data['content'] = getattr(instance, f'content_{lang}')
+            data['description'] = getattr(instance, f'description_{lang}')
         return data
 
     def get_links(self, obj):

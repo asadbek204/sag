@@ -3,7 +3,7 @@ from .models import Blog, SocialMediaIcon
 
 
 class BlogTranslationOptions(TranslationOptions):
-    fields = ['title']
+    fields = ['title', 'description']
 
 
 class SocialMediaIconTranslationOptions(TranslationOptions):
