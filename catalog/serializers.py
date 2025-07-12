@@ -341,7 +341,7 @@ class DiscountedCarpetSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['collection_type'] = instance.get_collection_type_display()
+        data['collection_type'] = 'Sale'
         return data
 
 
