@@ -11,6 +11,7 @@ from .models import (
     CarpetModelImages,
     Character,
     CharacterDetail,
+    CharacterTitle,
 )
 
 admin.site.register(Shape)
@@ -24,3 +25,4 @@ admin.site.register(Catalog)
 admin.site.register(CarpetModelImages)
 admin.site.register(Character)
 admin.site.register(CharacterDetail)
+admin.site.register(CharacterTitle)

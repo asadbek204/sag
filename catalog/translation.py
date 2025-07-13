@@ -6,6 +6,7 @@ from .models import (
     Shape,
     Character,
     CharacterDetail,
+    CharacterTitle,
 )
 
 
@@ -30,7 +31,11 @@ class CharacterTranslationOptions(TranslationOptions):
 
 
 class CharacterDetailTranslationOptions(TranslationOptions):
-    fields = ['detail', 'title']
+    fields = ['detail']
+
+
+class CharacterTitleTranslationOptions(TranslationOptions):
+    fields = ['title']
 
 
 translator.register(Catalog, CatalogTranslationOptions)
@@ -39,3 +44,4 @@ translator.register(Color, ColorTranslationOptions)
 translator.register(Shape, ShapeTranslationOptions)
 translator.register(Character, CharacterTranslationOptions)
 translator.register(CharacterDetail, CharacterDetailTranslationOptions)
+translator.register(CharacterTitle, CharacterTitleTranslationOptions)

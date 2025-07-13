@@ -104,8 +104,19 @@ class Character(BaseModel):
         verbose_name_plural = _('Character')
 
 
+class CharacterTitle(BaseModel):
+    title = models.CharField(max_length=250, blank=True, null=True, verbose_name = _('title'))
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('Character Title')
+        verbose_name_plural = _('Character Title')
+
+
 class CharacterDetail(BaseModel):
-    title = models.CharField(max_length=250, blank=True)
+    title = models.ForeignKey(CharacterTitle, on_delete=models.CASCADE, blank=True, null=True, verbose_name = _('title'))
     character = models.ForeignKey(Character, on_delete=models.CASCADE, blank=True, verbose_name = _('character'))
     model = models.ForeignKey(CarpetModel, on_delete=models.CASCADE, blank=True, verbose_name = _('model'))
     detail = models.CharField(max_length=250, verbose_name = _('detail'))
