@@ -91,15 +91,6 @@ class CollectionSerializer(serializers.ModelSerializer):
         model = Carpet
         fields = ['id', 'name']
 
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
-        return data
-
 
 class FilterForCarpetModelSerializer(serializers.ModelSerializer):
     collections = serializers.SerializerMethodField()
@@ -186,7 +177,6 @@ class CarpetsSerializer(serializers.ModelSerializer):
         lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
-            data['name'] = getattr(instance, f'name_{lang}')
             data['catalog'] = getattr(instance.catalog, f'name_{lang}')
         return data
 
