@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   procps \
   git \
   netcat-openbsd \
+  gettext \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
