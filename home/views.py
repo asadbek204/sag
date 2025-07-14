@@ -10,7 +10,7 @@ from .serializers import (
     QuestionSerializer,
     CollectionSerializer,
     CarpetModelSerializer,
-    CarpetSerializer
+    CarpetSerializer, GetCollectionSerializer
 )
 from .models import Header, Questions, Collection
 from rest_framework.response import Response
@@ -194,7 +194,7 @@ class HomeViewSet(ViewSet):
         prices = Price.objects.all()
 
         response_data = {
-            'collections': CollectionSerializer(collections, many=True, context={'request': request}).data,
+            'collections': GetCollectionSerializer(collections, many=True, context={'request': request}).data,
             'rooms': RoomSerializer(rooms, many=True, context={'request': request}).data,
             'colors': ColorSerializer(colors, many=True, context={'request': request}).data,
             'shapes': ShapeSerializer(shapes, many=True, context={'request': request}).data,

@@ -75,6 +75,12 @@ class QuestionSerializer(serializers.ModelSerializer):
         return data
 
 
+class GetCollectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carpet
+        fields = ['id', 'name']
+
+
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collection
