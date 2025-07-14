@@ -195,7 +195,6 @@ class GetCarpetModelsSerializer(serializers.ModelSerializer):
         lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
         lang_options = settings.MODELTRANSLATION_LANGUAGES
         if lang in lang_options:
-            data['model'] = getattr(instance.model, f'name_{lang}')
             data['color'] = getattr(instance.color, f'name_{lang}')
         return data
 
