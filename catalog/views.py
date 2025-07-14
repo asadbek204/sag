@@ -23,7 +23,7 @@ from .serializers import (
     RoomSerializer,
     ColorSerializer,
     ShapeSerializer,
-    CollectionSerializer,
+    CollectionSerializer, GetPriceSerializer,
 )
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -129,12 +129,16 @@ class CatalogViewSet(ViewSet):
                             type=openapi.TYPE_ARRAY,
                             items=openapi.Schema(type=openapi.TYPE_OBJECT)
                         ),
+                        'prices': openapi.Schema(
+                            type=openapi.TYPE_ARRAY,
+                            items=openapi.Schema(type=openapi.TYPE_OBJECT)
+                        ),
                         'labels': openapi.Schema(
                             type=openapi.TYPE_ARRAY,
                             items=openapi.Schema(type=openapi.TYPE_OBJECT)
                         ),
                     },
-                    required=['catalog', 'collections', 'rooms', 'colors', 'shapes'],  # styles is optional
+                    required=['catalog', 'collections', 'rooms', 'colors', 'shapes', 'prices'],  # styles is optional
                 )
             ),
             404: 'Catalog not found',
@@ -152,6 +156,7 @@ class CatalogViewSet(ViewSet):
         rooms = Room.objects.all()
         colors = Color.objects.all()
         shapes = Shape.objects.all()
+        prices = Price.objects.all()
 
         serializer = FilterSerializer(catalog, context={'request': request})
 
@@ -161,6 +166,7 @@ class CatalogViewSet(ViewSet):
             'rooms': RoomSerializer(rooms, many=True, context={'request': request}).data,
             'colors': ColorSerializer(colors, many=True, context={'request': request}).data,
             'shapes': ShapeSerializer(shapes, many=True, context={'request': request}).data,
+            'prices': GetPriceSerializer(prices, many=True, context={'request': request}).data,
         }
 
         if styles.exists():
@@ -173,6 +179,7 @@ class CatalogViewSet(ViewSet):
             'colors': str(_('Colors')),
             'shapes': str(_('Shapes')),
             'styles': str(_('Styles')),
+            'prices': str(_('Prices')),
         }
 
         return Response(data=response_data, status=status.HTTP_200_OK)
@@ -349,16 +356,7 @@ class CatalogViewSet(ViewSet):
         if not catalog:
             return Response(data={'error': _('Catalog not found')}, status=status.HTTP_404_NOT_FOUND)
 
-        queryset = Carpet.objects.filter(catalog=catalog).distinct()
         data = request.GET
-        sort_by = data.get('sort_by')
-
-        if sort_by == "1":
-            queryset = queryset.filter(collection_type=2)
-        elif sort_by == "2":
-            queryset = queryset.filter(collection_type=4)
-        elif sort_by == "3":
-            queryset = queryset.filter(collection_type=3)
 
         def get_list(param):
             return [int(x) for x in request.GET.get(param, "").split(",") if x.strip().isdigit()]
@@ -385,9 +383,24 @@ class CatalogViewSet(ViewSet):
             carpet_model_filter = carpet_model_filter.filter(size__shape_id__in=shape_ids).distinct()
 
         model_ids = carpet_model_filter.values_list('model_id', flat=True).distinct()
-        queryset = queryset.filter(id__in=model_ids).distinct()
 
-        serializer = CarpetsSerializer(queryset, many=True, context={'request': request})
+        # Endi faqat shu model_id lar bilan ishlaymiz
+        queryset = Carpet.objects.filter(catalog=catalog, id__in=model_ids)
+
+        # sort_by = 1 (New), 2 (Hit), 3 (Sale)
+        try:
+            sort_by = int(data.get('sort_by', 0))
+        except ValueError:
+            sort_by = 0
+
+        if sort_by == 1:
+            queryset = queryset.filter(collection_type=2)
+        elif sort_by == 2:
+            queryset = queryset.filter(collection_type=4)
+        elif sort_by == 3:
+            queryset = queryset.filter(collection_type=3)
+
+        serializer = CarpetsSerializer(queryset.distinct(), many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(

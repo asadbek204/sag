@@ -13,6 +13,12 @@ from .models import (
 from django.conf import settings
 
 
+class GetPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        fields = ['id', 'from_price', 'to_price']
+
+
 class StyleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Style
