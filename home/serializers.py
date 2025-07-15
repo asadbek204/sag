@@ -93,27 +93,29 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 
 class CarpetSerializer(serializers.ModelSerializer):
-    collection = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Carpet
-        fields = ['id', 'name', 'image', 'collection']
-
-    def get_collection(self, obj):
-        return _('collection')
+    pass
+    # collection = serializers.SerializerMethodField()
+    #
+    # class Meta:
+    #     model = Carpet
+    #     fields = ['id', 'name', 'image', 'collection']
+    #
+    # def get_collection(self, obj):
+    #     return _('collection')
 
 
 class CarpetModelSerializer(serializers.ModelSerializer):
-    model = serializers.SerializerMethodField()
-    class Meta:
-        model = CarpetModel
-        fields = ['id', 'name', 'image', 'model']
-
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        if instance.discount > 0:
-            data['price'] = instance.discount
-        return data
-
-    def get_model(self, obj):
-        return _('carpet_model')
+    pass
+    # model = serializers.SerializerMethodField()
+    # class Meta:
+    #     model = CarpetModel
+    #     fields = ['id', 'name', 'image', 'model']
+    #
+    # def to_representation(self, instance):
+    #     data = super().to_representation(instance)
+    #     if instance.discount > 0:
+    #         data['price'] = instance.discount
+    #     return data
+    #
+    # def get_model(self, obj):
+    #     return _('carpet_model')
