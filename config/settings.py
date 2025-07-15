@@ -173,8 +173,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'
 
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': 'https://api.gilamlardunyosisag.uz',
-    'SCHEMES': ['https'],
+    'DEFAULT_API_URL': 'http://api.gilamlardunyosisag.uz' if DEBUG else 'https://api.gilamlardunyosisag.uz',
+    'SCHEMES': ['http', 'https'] if DEBUG else ['https'],
     'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
@@ -194,6 +194,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     f"https://{os.getenv('DOMAIN_NAME')}",
+    f"http://{os.getenv('DOMAIN_NAME')}",  # Add HTTP for development
     "http://localhost:3000",  # Add your frontend dev URL
     "http://127.0.0.1:3000",
 ]
