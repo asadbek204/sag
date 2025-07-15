@@ -22,6 +22,7 @@ jobs:
         script: |
           cd /var/www/sag/
           git pull
+          sudo systemctl restart docker || true
           docker compose down
           docker compose up -d --build
           docker compose exec project python manage.py makemigrations --noinput
