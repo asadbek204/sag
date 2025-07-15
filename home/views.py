@@ -1,7 +1,13 @@
 from rest_framework.viewsets import ViewSet
 
-from catalog.serializers import GetCarpetModelsSerializer, RoomSerializer, ColorSerializer, ShapeSerializer, \
-    StyleSerializer, GetPriceSerializer
+from catalog.serializers import (
+    GetCarpetModelsSerializer,
+    RoomSerializer,
+    ColorSerializer,
+    ShapeSerializer,
+    StyleSerializer,
+    GetPriceSerializer
+)
 from rooms.models import Room
 from .serializers import (
     HeaderSerializer,
@@ -10,7 +16,8 @@ from .serializers import (
     QuestionSerializer,
     CollectionSerializer,
     CarpetModelSerializer,
-    CarpetSerializer, GetCollectionSerializer
+    CarpetSerializer,
+    GetCollectionSerializer
 )
 from .models import Header, Questions, Collection
 from rest_framework.response import Response
@@ -201,13 +208,13 @@ class HomeViewSet(ViewSet):
             'styles': StyleSerializer(styles, many=True, context={'request': request}).data,
             'prices': GetPriceSerializer(prices, many=True, context={'request': request}).data,
             'labels': {
-                'catalog': str(_('Catalog')),
-                'collections': str(_('Collections')),
-                'rooms': str(_('Rooms')),
-                'colors': str(_('Colors')),
-                'shapes': str(_('Shapes')),
-                'styles': str(_('Styles')),
-                'prices': str(_('Prices')),
+                'catalog': _('Catalog'),
+                'collections': _('Collections'),
+                'rooms': _('Rooms'),
+                'colors': _('Colors'),
+                'shapes': _('Shapes'),
+                'styles': _('Styles'),
+                'prices': _('Prices'),
             }
         }
         return Response(data=response_data, status=status.HTTP_200_OK)

@@ -90,11 +90,11 @@ class CatalogViewSet(ViewSet):
             response_data['styles'] = StyleSerializer(styles, many=True, context={'request': request}).data,
 
         response_data['labels'] = {
-            'catalog': str(_('Catalog')),
-            'rooms': str(_('Rooms')),
-            'colors': str(_('Colors')),
-            'shapes': str(_('Shapes')),
-            'styles': str(_('Styles')),
+            'catalog': _('Catalog'),
+            'rooms': _('Rooms'),
+            'colors': _('Colors'),
+            'shapes': _('Shapes'),
+            'styles': _('Styles'),
         }
         return Response(data=response_data, status=status.HTTP_200_OK)
 
@@ -170,16 +170,15 @@ class CatalogViewSet(ViewSet):
         }
 
         if styles.exists():
-            response_data['styles'] = StyleSerializer(styles, many=True, context={'request': request}).data,
-
+            response_data['styles'] = StyleSerializer(styles, many=True, context={'request': request}).da
         response_data['labels'] = {
-            'catalog': str(_('Catalog')),
-            'collections': str(_('Collections')),
-            'rooms': str(_('Rooms')),
-            'colors': str(_('Colors')),
-            'shapes': str(_('Shapes')),
-            'styles': str(_('Styles')),
-            'prices': str(_('Prices')),
+            'catalog': _('Catalog'),
+            'collections': _('Collections'),
+            'rooms': _('Rooms'),
+            'colors': _('Colors'),
+            'shapes': _('Shapes'),
+            'styles': _('Styles'),
+            'prices': _('Prices'),
         }
 
         return Response(data=response_data, status=status.HTTP_200_OK)

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-13 16:07+0500\n"
-"PO-Revision-Date: 2025-07-15 11:37+0500\n"
+"POT-Creation-Date: 2025-07-15 11:50+0500\n"
+"PO-Revision-Date: 2025-07-15 12:31+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -139,7 +139,7 @@ msgid "catalog"
 msgstr "katalog"
 
 #: .\catalog\models.py:23 .\catalog\models.py:24 .\catalog\views.py:93
-#: .\catalog\views.py:170
+#: .\catalog\views.py:175 .\home\views.py:211
 msgid "Catalog"
 msgstr "Katalog"
 
@@ -204,7 +204,6 @@ msgid "Character"
 msgstr "Xarakteristika"
 
 #: .\catalog\models.py:114 .\catalog\models.py:115
-#| msgid "Character Detail"
 msgid "Character Title"
 msgstr "Xarakteristika Tafsiloti"
 
@@ -220,7 +219,7 @@ msgstr "tafsilot"
 msgid "Character Detail"
 msgstr "Xarakteristika tafsilot"
 
-#: .\catalog\models.py:133 .\catalog\models.py:156 .\home\serializers.py:122
+#: .\catalog\models.py:133 .\catalog\models.py:156 .\home\serializers.py:128
 msgid "carpet_model"
 msgstr "gilam_modeli"
 
@@ -248,36 +247,41 @@ msgstr "uzunligi"
 msgid "Size"
 msgstr "O`lcham"
 
-#: .\catalog\views.py:76 .\catalog\views.py:148 .\catalog\views.py:204
-#: .\catalog\views.py:266 .\catalog\views.py:350
+#: .\catalog\views.py:76 .\catalog\views.py:152 .\catalog\views.py:210
+#: .\catalog\views.py:272 .\catalog\views.py:356
 msgid "Catalog not found"
 msgstr "Katalog topilmadi"
 
-#: .\catalog\views.py:94 .\catalog\views.py:172
+#: .\catalog\views.py:94 .\catalog\views.py:177 .\home\views.py:213
 msgid "Rooms"
 msgstr "Xonalar"
 
-#: .\catalog\views.py:95 .\catalog\views.py:173
+#: .\catalog\views.py:95 .\catalog\views.py:178 .\home\views.py:214
 msgid "Colors"
 msgstr "Ranglar"
 
-#: .\catalog\views.py:96 .\catalog\views.py:174
+#: .\catalog\views.py:96 .\catalog\views.py:179 .\home\views.py:215
 msgid "Shapes"
 msgstr "O`lchamlar"
 
-#: .\catalog\views.py:97 .\catalog\views.py:175
+#: .\catalog\views.py:97 .\catalog\views.py:180 .\home\views.py:216
 msgid "Styles"
 msgstr "Stillar"
 
-#: .\catalog\views.py:171
+#: .\catalog\views.py:176 .\home\views.py:212
 msgid "Collections"
 msgstr "Kollektsiyalar"
 
-#: .\catalog\views.py:220
+#: .\catalog\views.py:181 .\home\views.py:217
+#| msgid "Price"
+msgid "Prices"
+msgstr "Narxlar"
+
+#: .\catalog\views.py:226
 msgid "Carpet not found"
 msgstr "Gilam topilmadi"
 
-#: .\catalog\views.py:404
+#: .\catalog\views.py:416
 msgid "Carpet Model not found"
 msgstr "Gilam Modeli topilmadi"
 
@@ -377,7 +381,7 @@ msgstr "javob"
 msgid "Questions"
 msgstr "Savollar"
 
-#: .\home\models.py:28 .\home\serializers.py:106
+#: .\home\models.py:28 .\home\serializers.py:112
 msgid "collection"
 msgstr "kolleksiya"
 
@@ -385,7 +389,7 @@ msgstr "kolleksiya"
 msgid "Collection"
 msgstr "Kolleksiya"
 
-#: .\home\views.py:132
+#: .\home\views.py:141
 msgid "Search query is required"
 msgstr "Qidiruv so'rovi talab qilinadi"
 
