@@ -1,3 +1,4 @@
+from django.db.models import OuterRef, Exists
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ViewSet
@@ -208,8 +209,12 @@ class CatalogViewSet(ViewSet):
         catalog = Catalog.objects.filter(id=kwargs['pk']).first()
         if catalog is None:
             return Response(data={'error': _('Catalog not found')}, status=status.HTTP_404_NOT_FOUND)
-        all_carpets = Carpet.objects.filter(catalog=catalog)
-        serializer = CarpetsSerializer(all_carpets, many=True, context={'request': request})
+        carpets_with_models = Carpet.objects.annotate(
+            has_model=Exists(
+                CarpetModel.objects.filter(model=OuterRef('pk'))
+            )
+        ).filter(catalog=catalog, has_model=True)
+        serializer = CarpetsSerializer(carpets_with_models, many=True, context={'request': request})
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
