@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = list(os.getenv('ALLOWED_HOSTS'))
 
 # Application definition
 
@@ -173,6 +173,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'
 
 SWAGGER_SETTINGS = {
+    'DEFAULT_API_URL': 'https://api.gilamlardunyosisag.uz',
     'SCHEMES': ['https'],
     'SECURITY_DEFINITIONS': {
         'Bearer': {
