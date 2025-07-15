@@ -106,20 +106,21 @@ class HomeViewSet(ViewSet):
         tags=['home']
     )
     def get_news(self, request, *args, **kwargs):
-        new_carpets = Carpet.objects.filter(collection_type=2)
-        new_carpet_models = CarpetModel.objects.filter(collection_type=2)
-
-        serialized_carpets = CarpetSerializer(new_carpets, many=True, context={'request': request}).data
-        serialized_carpet_models = CarpetModelSerializer(new_carpet_models, many=True,
-                                                         context={'request': request}).data
-
-        combined = [
-                       {**item} for item in serialized_carpets
-                   ] + [
-                       {**item} for item in serialized_carpet_models
-                   ]
-
-        return Response(data=combined, status=status.HTTP_200_OK)
+        pass
+        # new_carpets = Carpet.objects.filter(collection_type=2)
+        # new_carpet_models = CarpetModel.objects.filter(collection_type=2)
+        #
+        # serialized_carpets = CarpetSerializer(new_carpets, many=True, context={'request': request}).data
+        # serialized_carpet_models = CarpetModelSerializer(new_carpet_models, many=True,
+        #                                                  context={'request': request}).data
+        #
+        # combined = [
+        #                {**item} for item in serialized_carpets
+        #            ] + [
+        #                {**item} for item in serialized_carpet_models
+        #            ]
+        #
+        # return Response(data=combined, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(
         operation_description="Search Carpet",
