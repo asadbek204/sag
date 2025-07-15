@@ -17,9 +17,9 @@ from .serializers import (
     CollectionSerializer,
     CarpetModelSerializer,
     CarpetSerializer,
-    GetCollectionSerializer
+    GetCollectionSerializer, NewsCarpetCollectionSerializer, NewsCarpetDetailSerializer
 )
-from .models import Header, Questions, Collection
+from .models import Header, Questions, Collection, CarpetCollectionNews, CarpetDetailNews
 from rest_framework.response import Response
 from rest_framework import status
 from catalog.models import Catalog, Style, Color, Shape, Price
@@ -106,17 +106,28 @@ class HomeViewSet(ViewSet):
         tags=['home']
     )
     def get_news(self, request, *args, **kwargs):
-        new_carpets = Carpet.objects.filter(collection_type=2)
-        new_carpet_models = CarpetModel.objects.filter(collection_type=2)
+        # new_carpets = Carpet.objects.filter(collection_type=2)
+        # new_carpet_models = CarpetModel.objects.filter(collection_type=2)
+        #
+        # serialized_carpets = CarpetSerializer(new_carpets, many=True, context={'request': request}).data
+        # serialized_carpet_models = CarpetModelSerializer(new_carpet_models, many=True,
+        #                                                  context={'request': request}).data
+        #
+        # combined = [
+        #                {**item} for item in serialized_carpets
+        #            ] + [
+        #                {**item} for item in serialized_carpet_models
+        #            ]
+        carpet = CarpetCollectionNews.objects.all()
+        carpet_model = CarpetDetailNews.objects.all()
 
-        serialized_carpets = CarpetSerializer(new_carpets, many=True, context={'request': request}).data
-        serialized_carpet_models = CarpetModelSerializer(new_carpet_models, many=True,
-                                                         context={'request': request}).data
+        serializer_collection = NewsCarpetCollectionSerializer(carpet, many=True, context={'request': request}).data
+        serializer_model = NewsCarpetDetailSerializer(carpet_model, many=True, context={'request': request}).data
 
         combined = [
-                       {**item} for item in serialized_carpets
+                       {**item} for item in serializer_collection
                    ] + [
-                       {**item} for item in serialized_carpet_models
+                       {**item} for item in serializer_model
                    ]
 
         return Response(data=combined, status=status.HTTP_200_OK)

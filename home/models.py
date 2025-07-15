@@ -1,7 +1,12 @@
 from django.db import models
 from core.base import BaseModel
-from catalog.models import COLLECTION_TYPE
+from catalog.models import COLLECTION_TYPE, Carpet, CarpetModel
 from django.utils.translation import gettext_lazy as _
+
+CARPET_TYPE = (
+    (1, 'Collection'),
+    (2, 'Detail'),
+)
 
 
 class Header(BaseModel):
@@ -36,6 +41,28 @@ class Collection(BaseModel):
         verbose_name_plural = _('Collection')
 
 
+class CarpetCollectionNews(BaseModel):
+    model = models.ForeignKey(Carpet, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='carpet_collection_news/', blank=True)
+
+    def __str__(self):
+        return f'{self.model.name}'
+
+    class Meta:
+        verbose_name = _('Carpet Collection News')
+        verbose_name_plural = _('Carpet Collection News')
+
+
+class CarpetDetailNews(BaseModel):
+    model = models.ForeignKey(CarpetModel, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to='carpet_detail_news/', blank=True)
+
+    def __str__(self):
+        return f'{self.model.name}'
+
+    class Meta:
+        verbose_name = _('Carpet Detail News')
+        verbose_name_plural = _('Carpet Detail News')
 
 
 

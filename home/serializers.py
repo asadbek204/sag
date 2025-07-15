@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Header, Questions, Collection
+from .models import Header, Questions, Collection, CarpetCollectionNews, CarpetDetailNews
 from catalog.models import Catalog, Style, CarpetModel, Carpet
 from blog.models import Blog
 from django.conf import settings
@@ -97,7 +97,7 @@ class CarpetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Carpet
-        fields = ['id', 'name', 'image', 'collection']
+        fields = ['id', 'name', 'image', 'collection', 'catalog']
 
     def get_collection(self, obj):
         return _('collection')
@@ -117,3 +117,41 @@ class CarpetModelSerializer(serializers.ModelSerializer):
 
     def get_model(self, obj):
         return _('carpet_model')
+
+
+class ModelForNewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carpet
+        fields = ['id', 'name', 'catalog']
+
+
+class ModelDetailForNewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarpetModel
+        fields = ['id', 'name']
+
+
+class NewsCarpetCollectionSerializer(serializers.ModelSerializer):
+    model = ModelForNewsSerializer()
+    type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CarpetCollectionNews
+        fields = ['image', 'model', 'type']
+
+    def get_type(self, obj):
+        return 'collection'
+
+
+class NewsCarpetDetailSerializer(serializers.ModelSerializer):
+    model = ModelDetailForNewsSerializer
+    type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CarpetDetailNews
+        fields = ['image', 'model', 'type']
+
+    def get_type(self, obj):
+        return 'detail'
+
+
