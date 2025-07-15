@@ -38,14 +38,6 @@ class CharacterTitleTranslationOptions(TranslationOptions):
     fields = ['title']
 
 
-class CarpetTranslationOptions(TranslationOptions):
-    fields = ['name']
-
-
-class CarpetModelTranslationOptions(TranslationOptions):
-    fields = ['name']
-
-
 translator.register(Catalog, CatalogTranslationOptions)
 translator.register(Style, StyleTranslationOptions)
 translator.register(Color, ColorTranslationOptions)
@@ -53,5 +45,3 @@ translator.register(Shape, ShapeTranslationOptions)
 translator.register(Character, CharacterTranslationOptions)
 translator.register(CharacterDetail, CharacterDetailTranslationOptions)
 translator.register(CharacterTitle, CharacterTitleTranslationOptions)
-translator.register(CharacterTitle, CarpetTranslationOptions)
-translator.register(CharacterTitle, CarpetModelTranslationOptions)

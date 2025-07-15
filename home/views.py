@@ -101,7 +101,7 @@ class HomeViewSet(ViewSet):
         operation_description="Get News",
         operation_summary="Get News",
         responses={
-            200: CarpetModelSerializer(),
+            200: 'ok',
         },
         tags=['home']
     )
