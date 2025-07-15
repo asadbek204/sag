@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-15 12:26+0500\n"
-"PO-Revision-Date: 2025-07-15 15:23+0500\n"
+"PO-Revision-Date: 2025-07-15 15:36+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -221,7 +221,7 @@ msgstr "Characteristic Detail"
 
 #: .\catalog\models.py:133 .\catalog\models.py:156 .\home\serializers.py:128
 msgid "carpet_model"
-msgstr ""
+msgstr "Carpet Model"
 
 #: .\catalog\models.py:140 .\catalog\models.py:141
 msgid "Carpet Model Images"
@@ -382,7 +382,7 @@ msgstr ""
 
 #: .\home\models.py:28 .\home\serializers.py:112
 msgid "collection"
-msgstr ""
+msgstr "Collection"
 
 #: .\home\models.py:35 .\home\models.py:36
 msgid "Collection"

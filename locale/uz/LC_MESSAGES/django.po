@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-15 11:50+0500\n"
-"PO-Revision-Date: 2025-07-15 15:24+0500\n"
+"PO-Revision-Date: 2025-07-15 15:38+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -221,7 +221,7 @@ msgstr "Xarakteristika tafsilot"
 
 #: .\catalog\models.py:133 .\catalog\models.py:156 .\home\serializers.py:128
 msgid "carpet_model"
-msgstr "gilam_modeli"
+msgstr "Gilam Modeli"
 
 #: .\catalog\models.py:140 .\catalog\models.py:141
 msgid "Carpet Model Images"
@@ -383,7 +383,7 @@ msgstr "Savollar"
 
 #: .\home\models.py:28 .\home\serializers.py:112
 msgid "collection"
-msgstr "kolleksiya"
+msgstr "Kolleksiya"
 
 #: .\home\models.py:35 .\home\models.py:36
 msgid "Collection"
