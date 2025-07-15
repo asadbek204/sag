@@ -27,9 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = list(os.getenv('ALLOWED_HOSTS'))
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else [
+    'api.gilamlardunyosisag.uz',
+    'localhost',
+    '127.0.0.1',
+    '*',  # Allow all for debugging - remove in production
+]
 
 # Application definition
 
@@ -192,12 +197,30 @@ USE_X_FORWARDED_HOST = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = [
-    f"https://{os.getenv('DOMAIN_NAME')}",
-    f"http://{os.getenv('DOMAIN_NAME')}",  # Add HTTP for development
-    "http://localhost:3000",  # Add your frontend dev URL
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://gilamlardunyosisag.uz",
+    "http://gilamlardunyosisag.uz",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{os.getenv('DOMAIN_NAME', 'api.gilamlardunyosisag.uz')}",
+    f"http://{os.getenv('DOMAIN_NAME', 'api.gilamlardunyosisag.uz')}",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://gilamlardunyosisag.uz",
+    "http://gilamlardunyosisag.uz",
+]
+
+CSRF_ALLOWED_ORIGINS = [
+    f"https://{os.getenv('DOMAIN_NAME', 'api.gilamlardunyosisag.uz')}",
+    f"http://{os.getenv('DOMAIN_NAME', 'api.gilamlardunyosisag.uz')}",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://gilamlardunyosisag.uz",
+    "http://gilamlardunyosisag.uz",
+]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -206,9 +229,12 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
 }
 
-CSRF_ALLOWED_ORIGINS = [f"https://{os.getenv('DOMAIN_NAME')}"]
 LOGIN_URL = '/admin/login/'
 
 CORS_ALLOW_HEADERS = [
