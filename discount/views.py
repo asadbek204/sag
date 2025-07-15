@@ -33,7 +33,7 @@ class DiscountViewSet(ViewSet):
         tags=['discount']
     )
     def get_main_discounted_carpet_model(self, request, *args, **kwargs):
-        carpet = Carpet.objects.filter(id=kwargs['pk'], collection_type=3).first()
+        carpet = Carpet.objects.filter(id=kwargs['pk'], carpetmodel__collection_type=3).first()
         if carpet is None:
             return Response(data={'error': _('Carpet not found or Carpet is not New')}, status=status.HTTP_404_NOT_FOUND)
         carpet_models = CarpetModel.objects.filter(model=carpet, collection_type=3)
