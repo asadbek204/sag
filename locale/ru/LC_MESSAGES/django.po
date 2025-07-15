@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-15 12:24+0500\n"
-"PO-Revision-Date: 2025-07-15 12:33+0500\n"
+"PO-Revision-Date: 2025-07-15 15:24+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -201,15 +201,15 @@ msgstr "модель ковра"
 
 #: .\catalog\models.py:103 .\catalog\models.py:104
 msgid "Character"
-msgstr "Характер"
+msgstr "Объекта"
 
 #: .\catalog\models.py:114 .\catalog\models.py:115
 msgid "Character Title"
-msgstr "Характер персонажа"
+msgstr "Детали Объекта"
 
 #: .\catalog\models.py:120
 msgid "character"
-msgstr "характер"
+msgstr "oбъекта"
 
 #: .\catalog\models.py:122
 msgid "detail"
@@ -217,7 +217,7 @@ msgstr "деталь"
 
 #: .\catalog\models.py:128 .\catalog\models.py:129
 msgid "Character Detail"
-msgstr "Детали Персонажа"
+msgstr "Детали Объекта"
 
 #: .\catalog\models.py:133 .\catalog\models.py:156 .\home\serializers.py:128
 msgid "carpet_model"
