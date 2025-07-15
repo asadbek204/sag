@@ -170,7 +170,7 @@ class CatalogViewSet(ViewSet):
         }
 
         if styles.exists():
-            response_data['styles'] = StyleSerializer(styles, many=True, context={'request': request}).da
+            response_data['styles'] = StyleSerializer(styles, many=True, context={'request': request}).data
         response_data['labels'] = {
             'catalog': _('Catalog'),
             'collections': _('Collections'),
