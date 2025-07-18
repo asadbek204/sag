@@ -172,6 +172,7 @@ class GetCatalogsSerializer(serializers.ModelSerializer):
 
 
 class CarpetsSerializer(serializers.ModelSerializer):
+    catalog = serializers.SerializerMethodField()
     class Meta:
         model = Carpet
         fields = ['id', 'catalog', 'name', 'image', 'collection_type']
@@ -179,12 +180,20 @@ class CarpetsSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['collection_type'] = instance.get_collection_type_display()
-        request = self.context.get('request')
-        lang = request.headers.get('Accept-Language', settings.MODELTRANSLATION_DEFAULT_LANGUAGE)
-        lang_options = settings.MODELTRANSLATION_LANGUAGES
-        if lang in lang_options:
-            data['catalog'] = getattr(instance.catalog, f'name_{lang}')
         return data
+
+    def get_language(self):
+        request = self.context.get('request')
+        lang = settings.MODELTRANSLATION_DEFAULT_LANGUAGE
+        if request:
+            return request.headers.get('Accept-Language', lang)
+        return lang
+
+    def get_catalog(self, obj):
+        lang = self.get_language()
+        if hasattr(obj.catalog, f'name_{lang}'):
+            return getattr(obj.catalog, f'name_{lang}', obj.catalog.name)
+        return obj.catalog.name
 
 
 class GetCarpetModelsSerializer(serializers.ModelSerializer):
